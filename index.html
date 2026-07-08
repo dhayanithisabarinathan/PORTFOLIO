@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Dhaya Nithi | Hacker Portfolio & Developer Command Center</title>
+  <meta name="description"
+    content="Professional hacker-themed developer portfolio of Dhaya Nithi. Specializing in UI/UX Design, Front-End Development, and Full-Stack Development. Check out coding projects, technical skills, and interactive terminal console.">
+  <meta name="keywords"
+    content="Dhaya Nithi, Developer Portfolio, Cyberpunk Portfolio, Hacker Portfolio, UI/UX Designer, Front-End Developer, Full-Stack Developer, Computer Science Student, ASP.NET, Figma">
+  <meta name="author" content="Dhaya Nithi">
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Custom Cursor Targeting -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- Background Effects -->
+  <div class="cyber-grid"></div>
+  <div class="scanlines"></div>
+  <canvas class="matrix-canvas" id="matrix-canvas"></canvas>
+  <canvas class="particles-canvas" id="particles-canvas"></canvas>
+
+  <!-- BOOT SEQUENCE LOADING SCREEN -->
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-container cut-corner">
+      <div class="boot-logs" id="boot-logs">
+        <!-- Log lines will be printed dynamically via JS -->
+      </div>
+      <div class="boot-progress-container">
+        <div class="boot-progress-text">
+          <span id="boot-status-msg">INITIALIZING BOOT PROTOCOLS...</span>
+          <span id="boot-percent">0%</span>
+        </div>
+        <div class="boot-progress-bar">
+          <div class="boot-progress-fill" id="boot-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADS-UP DISPLAY NAVIGATION -->
+  <header id="header">
+    <div class="nav-container">
+      <a href="#hero" class="logo">
+        <span class="logo-bracket">&lt;</span>DHAYA<span>.M</span><span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li class="active"><a href="#hero"><i class="fa-solid fa-terminal text-green"></i> HOME</a></li>
+        <li><a href="#about"><i class="fa-solid fa-user-shield text-cyan"></i> ABOUT</a></li>
+        <li><a href="#skills"><i class="fa-solid fa-sliders text-green"></i> SKILLS</a></li>
+        <li><a href="#projects"><i class="fa-solid fa-code-branch text-cyan"></i> PROJECTS</a></li>
+        <li><a href="#experience"><i class="fa-solid fa-network-wired text-green"></i> TIMELINE</a></li>
+        <li><a href="#github"><i class="fa-brands fa-github text-cyan"></i> GIT-LOG</a></li>
+        <li><a href="#contact"><i class="fa-solid fa-envelope-open text-green"></i> CONTACT</a></li>
+        <li>
+          <button class="hud-audio-btn" id="audio-toggle">
+            <div class="sound-wave">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <span id="audio-btn-label">SOUND: ON</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <div class="hero-wrapper">
+      <div class="hero-info reveal-left">
+        <span class="hero-pretitle">DHAYA NITHI // CODENAME: NITHI</span>
+        <h1 class="hero-title">
+          COMPUTER SCIENCE<br>
+          <span>STUDENT &amp; DEVELOPER</span>
+        </h1>
+
+        <div class="hero-subtitle-container">
+          <i class="fa-solid fa-angle-right text-green"></i>
+          <span class="typed-text" id="typed-text"></span><span class="cursor-blink"></span>
+        </div>
+
+        <p class="hero-description">
+          Building state-of-the-art digital interfaces with bulletproof logic. Specializing in crafting user journeys in
+          Figma and translating them into robust full-stack applications.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-cyber btn-cyber-magnetic"><i class="fa-solid fa-eye"></i> View Projects</a>
+          <a href="#contact" class="btn-cyber btn-cyber-cyan btn-cyber-magnetic"><i
+              class="fa-solid fa-address-card"></i> Contact Me</a>
+          <a href="assets/images/dhaya resume.pdf" class="btn-cyber btn-cyber-red btn-cyber-magnetic"
+            id="resume-download-btn"><i class="fa-solid fa-file-arrow-down"></i> Resume.bin</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-right">
+        <!-- INTERACTIVE TERMINAL WIDGET -->
+        <div class="terminal-widget">
+          <div class="terminal-header">
+            <div class="terminal-buttons">
+              <span class="terminal-btn red"></span>
+              <span class="terminal-btn yellow"></span>
+              <span class="terminal-btn green"></span>
+            </div>
+            <div class="terminal-title">dhayanithisabarinatha9@mainframe:~</div>
+            <div><i class="fa-solid fa-signal text-green"></i></div>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <div class="terminal-output" id="terminal-output">
+              <div>Welcome to Dhaya's Portfolio Terminal v2.1.0</div>
+              <div>Type <span class="text-cyan">'help'</span> to see all available commands.</div>
+              <div>&nbsp;</div>
+            </div>
+            <div class="terminal-input-container">
+              <span class="terminal-prompt-sym">dhayanithi$</span>
+              <input type="text" class="terminal-input-field" id="terminal-input" autocomplete="off" spellcheck="false"
+                placeholder="Enter command...">
+            </div>
+          </div>
+          <div class="terminal-quick-links">
+            <span>QUICK CMDS:</span>
+            <button class="quick-cmd-btn" data-cmd="about">about</button>
+            <button class="quick-cmd-btn" data-cmd="skills">skills</button>
+            <button class="quick-cmd-btn" data-cmd="projects">projects</button>
+            <button class="quick-cmd-btn" data-cmd="contact">contact</button>
+            <button class="quick-cmd-btn" data-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ME SECTION -->
+  <section id="about">
+    <div class="section-header reveal">
+      <span class="section-tag">// 01 . IDENTITY CHECK</span>
+      <h2 class="section-title">About Me</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <div class="about-img-frame">
+          <div class="scan-radar-line"></div>
+          <img src="assets/images/profile.png" alt="Dhaya Nithi Profile Picture" class="profile-img">
+        </div>
+      </div>
+
+      <div class="about-details reveal-right">
+        <div class="cyber-panel cyber-decor">
+          <h3 class="font-mono text-cyan margin-bottom-sm">&gt; PROFILE_SUMMARY.LOG</h3>
+          <p class="about-text">
+            Hello, recruiter. I am <span class="about-highlight">Dhaya Nithi</span>, a Computer Science student driven
+            by an insatiable curiosity for how things work under the hood. I live at the intersection of <span
+              class="text-green">technical functionality</span> and <span class="text-cyan">visual elegance</span>.
+          </p>
+          <br>
+          <p class="about-text">
+            My development style centers on writing clean, modular code, executing thorough problem solving, and
+            pursuing continuous learning. Whether designing user-friendly wireframes in Figma or structuring database
+            logic, I strive for innovation in every deployment.
+          </p>
+        </div>
+
+        <div class="about-diagnostics">
+          <div class="diagnostic-item reveal" style="transition-delay: 0.1s;">
+            <div class="diag-title">Specialization</div>
+            <div class="diag-desc">UI/UX &amp; Full Stack</div>
+          </div>
+          <div class="diagnostic-item reveal" style="transition-delay: 0.2s;">
+            <div class="diag-title">Current Status</div>
+            <div class="diag-desc">B.Sc CS Student</div>
+          </div>
+          <div class="diagnostic-item reveal" style="transition-delay: 0.3s;">
+            <div class="diag-title">Core Principles</div>
+            <div class="diag-desc">Clean Code, UX Focus</div>
+          </div>
+          <div class="diagnostic-item reveal" style="transition-delay: 0.4s;">
+            <div class="diag-title">Interests</div>
+            <div class="diag-desc">UI/UX Front-End</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-tag">// 02 . SYSTEM CAPABILITIES</span>
+      <h2 class="section-title">Technical Skills</h2>
+    </div>
+
+    <div class="skills-container cyber-panel cyber-decor reveal">
+      <!-- UI/UX CATEGORY -->
+      <div class="skills-category">
+        <h3 class="category-title"><i class="fa-solid fa-compass-drafting"></i> UI/UX Design</h3>
+        <div class="skill-list">
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">Figma</span>
+              <span class="skill-percent" data-val="90">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-figma"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">Wireframing &amp; Prototyping</span>
+              <span class="skill-percent" data-val="85">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-wireframe"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">User Research</span>
+              <span class="skill-percent" data-val="80">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-research"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">Design Systems</span>
+              <span class="skill-percent" data-val="88">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-designsystem"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FRONT-END CATEGORY -->
+      <div class="skills-category">
+        <h3 class="category-title"><i class="fa-solid fa-code"></i> Front-End Development</h3>
+        <div class="skill-list">
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">HTML5 / Semantic CSS3</span>
+              <span class="skill-percent" data-val="92">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-htmlcss"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">JavaScript (ES6+)</span>
+              <span class="skill-percent" data-val="86">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-js"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">Responsive Web Design</span>
+              <span class="skill-percent" data-val="95">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-responsive"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRAMMING CATEGORY -->
+      <div class="skills-category margin-top-md">
+        <h3 class="category-title"><i class="fa-solid fa-laptop-code"></i> Programming</h3>
+        <div class="skill-list">
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">C++ / C</span>
+              <span class="skill-percent" data-val="88">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-cpp"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">Python</span>
+              <span class="skill-percent" data-val="82">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-python"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">C#</span>
+              <span class="skill-percent" data-val="78">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-csharp"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL STACK CATEGORY -->
+      <div class="skills-category margin-top-md">
+        <h3 class="category-title"><i class="fa-solid fa-database"></i> Full-Stack &amp; Tools</h3>
+        <div class="skill-list">
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">ASP.NET / .NET Core</span>
+              <span class="skill-percent" data-val="80">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-dotnet"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">SQL (Databases)</span>
+              <span class="skill-percent" data-val="85">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-sql"></div>
+            </div>
+          </div>
+          <div class="skill-node">
+            <div class="skill-info">
+              <span class="skill-name">Git &amp; Version Control</span>
+              <span class="skill-percent" data-val="90">0%</span>
+            </div>
+            <div class="skill-meter-bg">
+              <div class="skill-meter-fill" id="fill-git"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-tag">// 03 . BUILDS &amp; ARCHIVES</span>
+      <h2 class="section-title">Projects</h2>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card cyber-panel cyber-decor reveal">
+        <div class="project-img-wrapper">
+          <div class="project-scanline"></div>
+          <div class="project-status-tag">ACTIVE</div>
+          <img src="assets/images/project_ecommerce.png" alt="Cyber portfolio" class="project-img">
+        </div>
+        <div class="project-info">
+          <div class="project-tech">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag"></span>
+          </div>
+          <h3 class="project-title">Cyber Portfolio</h3>
+          <p class="project-desc">
+            A full-stack e-commerce engine featuring a responsive product grid, integrated shopping cart modules,
+            customized user authentication databases, and a secure payment gateway mockup.
+          </p>
+          <div class="project-actions">
+            <a href="#" class="btn-project primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="#" class="btn-project"><i class="fa-brands fa-github"></i> Repository</a>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="project-card cyber-panel cyber-decor reveal" style="transition-delay: 0.4s;">
+        <div class="project-img-wrapper">
+          <div class="project-scanline"></div>
+          <div class="project-status-tag">STABLE</div>
+          <img src="assets/images/project_dashboard.png" alt="Holographic Security Dashboard UI Mockup"
+            class="project-img">
+        </div>
+        <div class="project-info">
+          <div class="project-tech">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">SVG Charts</span>
+          </div>
+          <h3 class="project-title">Holographic Security Dashboard</h3>
+          <p class="project-desc">
+            A premium security dashboard user interface built with high-fidelity charts, live threat maps, network node
+            graphs, system health visualizers, and responsive cyberpunk theme layouts.
+          </p>
+          <div class="project-actions">
+            <a href="#" class="btn-project primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+            <a href="#" class="btn-project"><i class="fa-brands fa-github"></i> Repository</a>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- TIMELINES SECTION (EXPERIENCE & EDUCATION) -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-tag">// 04 . CHRONOLOGY &amp; TRACKS</span>
+      <h2 class="section-title">Experience &amp; Education</h2>
+    </div>
+
+    <div class="timeline-section-grid">
+      <!-- Experience timeline -->
+      <div class="timeline-wrapper reveal-left">
+        <h3 class="font-mono text-green margin-bottom-sm"><i class="fa-solid fa-briefcase"></i> EXPERIENCE_LOG.DAT</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <span class="timeline-date">2026</span>
+            <h4 class="timeline-title">UI/UX Designer &amp; Dev Freelancer</h4>
+            <p class="timeline-subtitle">Independent Digital Contractor</p>
+            <p class="timeline-desc">
+              Designing user-friendly wireframes and layout structures for modern tech platforms. Coding high-fidelity
+              front-end pages utilizing semantic HTML, modern CSS methods, and clean scripts.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <span class="timeline-date">2024 - 2025</span>
+            <h4 class="timeline-title">Full Stack Developer Training</h4>
+            <p class="timeline-subtitle">Dev Mainframe Labs</p>
+            <p class="timeline-desc">
+              Structured intensive backend training specializing in ASP.NET Core, relational SQL structures,
+              object-oriented concepts, and collaborative project repositories utilizing Git environments.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education timeline -->
+      <div class="timeline-wrapper reveal-right">
+        <h3 class="font-mono text-cyan margin-bottom-sm"><i class="fa-solid fa-graduation-cap"></i> EDUCATION_TRACK.DAT
+        </h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <span class="timeline-date">2024 - 2027</span>
+            <h4 class="timeline-title">B.Sc Computer Science</h4>
+            <p class="timeline-subtitle">G.T.N ARTS COLLEGE (Autonomous)</p>
+            <p class="timeline-desc">
+              Focusing on Object-Oriented Programming (C/C++), Datastructures, Systems Architecture, and Database
+              Management.
+              <br><br>
+              <strong class="text-cyan">CGPA:</strong> 8.75 / 10.0 (Current Placeholder)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES & ACHIEVEMENTS SECTION -->
+  <section id="certificates">
+    <div class="section-header reveal">
+      <span class="section-tag">// 05 . VALIDATIONS &amp; MILESTONES</span>
+      <h2 class="section-title">Certifications &amp; Achievements</h2>
+    </div>
+
+    <!-- Achievements Grid -->
+    <div class="achievements-grid margin-bottom-sm reveal">
+      <div class="achievement-card cyber-panel cyber-decor">
+        <i class="fa-solid fa-square-check achievement-icon"></i>
+        <div class="achievement-count" data-target="1">0</div>
+        <div class="achievement-title">Projects Done</div>
+      </div>
+      <div class="achievement-card cyber-panel cyber-decor">
+        <i class="fa-solid fa-pencil-ruler achievement-icon"></i>
+        <div class="achievement-count" data-target="22">0</div>
+        <div class="achievement-title">UI/UX Dials</div>
+      </div>
+      <div class="achievement-card cyber-panel cyber-decor">
+        <i class="fa-solid fa-award achievement-icon"></i>
+        <div class="achievement-count" data-target="12">0</div>
+        <div class="achievement-title">Certificates</div>
+      </div>
+      <div class="achievement-card cyber-panel cyber-decor">
+        <i class="fa-solid fa-git-commit achievement-icon"></i>
+        <div class="achievement-count" data-target="320">0</div>
+        <div class="achievement-title">Commits</div>
+      </div>
+    </div>
+
+    <br><br>
+
+    <!-- Certificate Gallery -->
+    <div class="certificates-gallery">
+      <!-- Cert 1 -->
+      <div class="certificate-card cyber-panel cyber-decor reveal-left">
+        <div class="cert-thumbnail-wrapper" style="padding: 0;">
+          <svg width="100%" height="100%" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="border: 1px solid rgba(0,240,255,0.2); background: rgba(10,12,18,0.8); border-radius:2px; display: block;">
+            <path d="M 0 20 L 200 20 M 0 40 L 200 40 M 0 60 L 200 60 M 0 80 L 200 80 M 0 100 L 200 100"
+              stroke="rgba(0,240,255,0.05)" stroke-width="0.5" />
+            <path d="M 40 0 L 40 120 M 80 0 L 80 120 M 120 0 L 120 120 M 160 0 L 160 120" stroke="rgba(0,240,255,0.05)"
+              stroke-width="0.5" />
+            <path d="M 5 15 L 5 5 L 15 5" stroke="#00f0ff" stroke-width="1" />
+            <path d="M 195 15 L 195 5 L 185 5" stroke="#00f0ff" stroke-width="1" />
+            <path d="M 5 105 L 5 115 L 15 115" stroke="#00f0ff" stroke-width="1" />
+            <path d="M 195 105 L 195 115 L 185 115" stroke="#00f0ff" stroke-width="1" />
+            <rect x="8" y="8" width="184" height="104" rx="2" stroke="rgba(0,240,255,0.15)" stroke-width="1" />
+            <text x="50%" y="30" font-family="'Orbitron', sans-serif" font-size="8" fill="#00f0ff" text-anchor="middle"
+              font-weight="bold" letter-spacing="1">CERTIFICATE</text>
+            <text x="50%" y="43" font-family="'Share Tech Mono', monospace" font-size="6" fill="#8b9bb4"
+              text-anchor="middle">AUTHORIZED BY GOOGLE</text>
+            <text x="50%" y="65" font-family="'Rajdhani', sans-serif" font-size="10" fill="#ffffff" text-anchor="middle"
+              font-weight="600" letter-spacing="0.5">UI/UX DESIGN EXPERT</text>
+            <circle cx="160" cy="90" r="12" fill="none" stroke="#00f0ff" stroke-width="0.75" stroke-dasharray="2 1" />
+            <circle cx="160" cy="90" r="8" fill="rgba(0,240,255,0.1)" stroke="#00ff66" stroke-width="0.75" />
+            <text x="20" y="95" font-family="'Share Tech Mono', monospace" font-size="5" fill="#4e5d78">ID:
+              UX-8892-NITHI</text>
+            <text x="20" y="103" font-family="'Share Tech Mono', monospace" font-size="5" fill="#00ff66">VERIFIED SECURE
+              // OK</text>
+          </svg>
+        </div>
+        <div class="cert-info">
+          <span class="cert-authority">GOOGLE / COURSERA</span>
+          <h4 class="cert-title">Google Professional UI/UX Design</h4>
+          <a href="assets/images/DHAYANITHI SABARINATHAN M (3).pdf" class="cert-link"><i
+              class="fa-solid fa-fingerprint"></i> Verify_Hash.key</a>
+        </div>
+      </div>
+
+      <!-- Cert 2 -->
+      <div class="certificate-card cyber-panel cyber-decor reveal-right">
+        <div class="cert-thumbnail-wrapper" style="padding: 0;">
+          <svg width="100%" height="100%" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="border: 1px solid rgba(0,255,102,0.2); background: rgba(10,12,18,0.8); border-radius:2px; display: block;">
+            <path d="M 0 20 L 200 20 M 0 40 L 200 40 M 0 60 L 200 60 M 0 80 L 200 80 M 0 100 L 200 100"
+              stroke="rgba(0,255,102,0.05)" stroke-width="0.5" />
+            <path d="M 40 0 L 40 120 M 80 0 L 80 120 M 120 0 L 120 120 M 160 0 L 160 120" stroke="rgba(0,255,102,0.05)"
+              stroke-width="0.5" />
+            <path d="M 5 15 L 5 5 L 15 5" stroke="#00ff66" stroke-width="1" />
+            <path d="M 195 15 L 195 5 L 185 5" stroke="#00ff66" stroke-width="1" />
+            <path d="M 5 105 L 5 115 L 15 115" stroke="#00ff66" stroke-width="1" />
+            <path d="M 195 105 L 195 115 L 185 115" stroke="#00ff66" stroke-width="1" />
+            <rect x="8" y="8" width="184" height="104" rx="2" stroke="rgba(0,255,102,0.15)" stroke-width="1" />
+            <text x="50%" y="30" font-family="'Orbitron', sans-serif" font-size="8" fill="#00ff66" text-anchor="middle"
+              font-weight="bold" letter-spacing="1">CERTIFICATE</text>
+            <text x="50%" y="43" font-family="'Share Tech Mono', monospace" font-size="6" fill="#8b9bb4"
+              text-anchor="middle">AUTHORIZED BY MICROSOFT</text>
+            <text x="50%" y="65" font-family="'Rajdhani', sans-serif" font-size="10" fill="#ffffff" text-anchor="middle"
+              font-weight="600" letter-spacing="0.5">FULL STACK DEVELOPER</text>
+            <circle cx="160" cy="90" r="12" fill="none" stroke="#00ff66" stroke-width="0.75" stroke-dasharray="2 1" />
+            <circle cx="160" cy="90" r="8" fill="rgba(0,255,102,0.1)" stroke="#00f0ff" stroke-width="0.75" />
+            <text x="20" y="95" font-family="'Share Tech Mono', monospace" font-size="5" fill="#4e5d78">ID:
+              FS-2041-NITHI</text>
+            <text x="20" y="103" font-family="'Share Tech Mono', monospace" font-size="5" fill="#00ff66">VERIFIED SECURE
+              // OK</text>
+          </svg>
+        </div>
+        <div class="cert-info">
+          <span class="cert-authority">MICROSOFT / LEARN</span>
+          <h4 class="cert-title">Full Stack Developer Certificate</h4>
+          <a href="assets/images/B64 FSD VIP Certificate  (5).pdf" class="cert-link"><i
+              class="fa-solid fa-fingerprint"></i> Verify_Hash.key</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB INTEGRATION MODULE -->
+  <section id="github">
+    <div class="section-header reveal">
+      <span class="section-tag">// 06 . EXTERNAL REPOS &amp; ACTIVITY</span>
+      <h2 class="section-title">GitHub Integration</h2>
+    </div>
+
+    <div class="github-grid">
+      <div class="github-main-panel reveal-left">
+        <!-- Live Map Widget -->
+        <div class="cyber-panel github-heatmap-container">
+          <div class="heatmap-header">
+            <span class="heatmap-title"><i class="fa-solid fa-calendar-days"></i> CONTRIBUTIONS_HEATMAP (Simulated Live
+              Data)</span>
+            <span class="heatmap-stats" id="heatmap-total-commits">1,024 commits in past year</span>
+          </div>
+
+          <div class="heatmap-scroll-wrapper">
+            <div class="github-heatmap" id="github-heatmap">
+              <!-- Heatmap cols and cells injected via Javascript -->
+            </div>
+          </div>
+
+          <div class="heatmap-legend">
+            <span>Less</span>
+            <div class="legend-cells">
+              <div class="heatmap-cell level-0"></div>
+              <div class="heatmap-cell level-1"></div>
+              <div class="heatmap-cell level-2"></div>
+              <div class="heatmap-cell level-3"></div>
+              <div class="heatmap-cell level-4"></div>
+            </div>
+            <span>More</span>
+          </div>
+        </div>
+
+        <!-- Repo cards -->
+        <div class="github-repos-grid">
+          <div class="repo-card">
+            <div class="repo-header">
+              <a href="#" class="repo-title">ux-gamified-dashboard</a>
+              <i class="fa-solid fa-star text-green" style="font-size: 0.8rem;"> 14</i>
+            </div>
+            <p class="repo-desc">Interactive dashboard containing clean modular charts, dark cybersecurity layouts, and
+              responsive Figma prototypes translated into code.</p>
+            <div class="repo-stats">
+              <span><span class="repo-lang-indicator lang-js"></span>JavaScript</span>
+              <span><i class="fa-solid fa-code-fork"></i> 3</span>
+            </div>
+          </div>
+
+          <div class="repo-card">
+            <div class="repo-header">
+              <a href="#" class="repo-title">aspnet-clean-architecture</a>
+              <i class="fa-solid fa-star text-green" style="font-size: 0.8rem;"> 28</i>
+            </div>
+            <p class="repo-desc">A template directory for ASP.NET API development, following domain-driven design,
+              repository patterns, and JSON authorization checks.</p>
+            <div class="repo-stats">
+              <span><span class="repo-lang-indicator lang-csharp"></span>C#</span>
+              <span><i class="fa-solid fa-code-fork"></i> 8</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Profile Metrics panel -->
+      <div class="github-side-panel reveal-right">
+        <div class="cyber-panel gh-profile-card">
+          <div class="gh-avatar-wrapper">
+            <img src="assets/images/profile.png" alt="Dhaya GitHub Avatar" class="gh-avatar">
+          </div>
+          <h3 class="gh-name">Dhaya Nithi</h3>
+          <span class="gh-username">@DhayaNithi-Dev</span>
+
+          <div class="gh-stat-row">
+            <span class="gh-stat-label">Repositiories</span>
+            <span class="gh-stat-value">32</span>
+          </div>
+          <div class="gh-stat-row">
+            <span class="gh-stat-label">Followers</span>
+            <span class="gh-stat-value">128</span>
+          </div>
+          <div class="gh-stat-row">
+            <span class="gh-stat-label">Active Languages</span>
+            <span class="gh-stat-value">JS, C++, C#, Python</span>
+          </div>
+          <div class="gh-stat-row">
+            <span class="gh-stat-label">Global Rank</span>
+            <span class="gh-stat-value">Top 12%</span>
+          </div>
+
+          <a href="https://github.com/dhayanithisabarinathan" target="_blank"
+            class="btn-cyber btn-cyber-cyan margin-top-md" style="width: 100%; justify-content: center;"><i
+              class="fa-brands fa-github"></i> Open Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="section-header reveal">
+      <span class="section-tag">// 07 . ESTABLISH SECURE LINK</span>
+      <h2 class="section-title">Contact</h2>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info-panel reveal-left">
+        <p class="contact-intro-text">
+          Have an opening, internship project, or need assistance converting Figma design systems into reliable system
+          stacks? Connect using the terminal links or send an encrypted letter using the mainframe.
+        </p>
+
+        <div class="contact-channels">
+          <a href="mailto:dhayanithisabarinathan9@gmail.com" class="contact-channel">
+            <div class="contact-icon-box">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">EMAIL_LINK</span>
+              <span class="contact-value">dhayanithisabarinathan9@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="tel:+917810018048" class="contact-channel">
+            <div class="contact-icon-box">
+              <i class="fa-solid fa-phone-volume"></i>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">SECURE_VOICE</span>
+              <span class="contact-value">+91 78100 18048</span>
+            </div>
+          </a>
+
+          <a href="#" class="contact-channel">
+            <div class="contact-icon-box">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">GEOLOCATION</span>
+              <span class="contact-value">Tamil Nadu, India</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/feed/" target="_blank" class="social-btn" aria-label="LinkedIn Profile"><i
+              class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://github.com/dhayanithisabarinathan" target="_blank" class="social-btn"
+            aria-label="GitHub Repositories"><i class="fa-brands fa-github"></i></a>
+          <a href="https://twitter.com" target="_blank" class="social-btn" aria-label="Twitter Profile"><i
+              class="fa-brands fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-panel cyber-panel cyber-decor reveal-right">
+        <form class="cyber-form" id="cyber-contact-form" action="#" method="POST">
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="form-name">&gt; SENDER_IDENTITY</label>
+              <input type="text" id="form-name" class="cyber-input" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="form-email">&gt; RETURN_ADDRESS</label>
+              <input type="email" id="form-email" class="cyber-input" placeholder="Your Email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="form-subject">&gt; TRANSMISSION_HEADER</label>
+            <input type="text" id="form-subject" class="cyber-input" placeholder="Subject" required>
+          </div>
+          <div class="form-group">
+            <label for="form-message">&gt; PAYLOAD_BODY</label>
+            <textarea id="form-message" class="cyber-input" placeholder="Write your transmission payload here..."
+              required></textarea>
+          </div>
+
+          <button type="submit" class="btn-cyber btn-cyber-cyan" style="width: fit-content; align-self: flex-start;">
+            <i class="fa-solid fa-paper-plane"></i> Transmit Message
+          </button>
+
+          <div class="form-status-msg" id="form-status-msg"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <a href="#hero" class="logo">
+        <span class="logo-bracket">&lt;</span>DHAYA<span>.M</span><span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <ul class="footer-nav">
+        <li><a href="#hero">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#skills">SKILLS</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#experience">TIMELINE</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+
+      <div class="copyright">
+        &copy; 2026 // NITHI SYSTEM DECRYPTOR // ALL SECURED
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script logic -->
+  <script src="script.js"></script>
+</body>
+
+</html>
