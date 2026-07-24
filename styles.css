@@ -1291,6 +1291,37 @@ section {
   flex-grow: 1;
 }
 
+.project-desc ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-desc li {
+  position: relative;
+  padding-left: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color var(--transition-speed);
+}
+
+.project-desc li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: bold;
+  text-shadow: var(--glow-green);
+}
+
+.project-desc li:hover {
+  color: var(--accent-cyan);
+}
+
 .project-actions {
   display: flex;
   gap: 15px;
